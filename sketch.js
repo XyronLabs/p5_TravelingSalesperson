@@ -44,7 +44,7 @@ function draw() {
 
     // Draw current path
     stroke(100);
-    strokeWeight(2);
+    strokeWeight(1);
     beginShape();
     for (i = 0; i < cities.length; i++) {
         vertex(cities[i].x, cities[i].y);
@@ -62,7 +62,7 @@ function draw() {
 
     // Draw cities as points
     stroke(255);
-    strokeWeight(8);
+    strokeWeight(10);
     for (var i = 0; i < numCities; i++) {
         point(cities[i].x, cities[i].y);
     }
