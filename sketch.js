@@ -4,6 +4,7 @@ var numCities = 5;
 var bestPath;
 var recordDistance;
 var recordP;
+var nCitiesP;
 
 function setup() {
     createCanvas(800, 480);
@@ -23,6 +24,7 @@ function setup() {
 
     // Create text
     recordP = createP();
+    nCitiesP = createP();
 }
 
 function draw() {
@@ -65,7 +67,21 @@ function draw() {
         point(cities[i].x, cities[i].y);
     }
 
+    // Show info
     recordP.html("Record distance: " + recordDistance);
+    nCitiesP.html("Number of cities: " + cities.length);
+}
+
+function mousePressed() {
+    if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+        var newCity = createVector(mouseX, mouseY);
+
+        var l = cities.length - 1;
+        recordDistance += dist(newCity.x, newCity.y, cities[l].x, cities[l].y);
+        
+        cities.push(newCity);
+        bestPath.push(newCity);
+    }
 }
 
 function calculateDistance(arr) {
