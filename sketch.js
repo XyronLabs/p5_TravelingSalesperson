@@ -3,6 +3,7 @@ var numCities = 5;
 
 var bestPath;
 var recordDistance;
+var recordP;
 
 function setup() {
     createCanvas(800, 480);
@@ -15,10 +16,13 @@ function setup() {
     }
 
     bestPath = cities.slice();
-    recordDistance = 0;
+    recordDistance = calculateDistance(cities);
 
     // Dont close th path shapes
     noFill();
+
+    // Create text
+    recordP = createP();
 }
 
 function draw() {
@@ -48,4 +52,14 @@ function draw() {
     for (var i = 0; i < numCities; i++) {
         point(cities[i].x, cities[i].y);
     }
+
+    recordP.html("Record distance: " + recordDistance);
+}
+
+function calculateDistance(arr) {
+    var sum = 0;
+    for (i = 0; i < arr.length - 1; i++) {
+        sum += dist(arr[i].x, arr[i].y, arr[i + 1].x, arr[i + 1].y);
+    }
+    return sum;
 }
