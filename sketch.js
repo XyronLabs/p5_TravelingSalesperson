@@ -25,6 +25,10 @@ function setup() {
     // Create text
     recordP = createP();
     nCitiesP = createP();
+
+    // Stop loop button
+    var stopB = createButton("Stop");
+    stopB.mousePressed(function() { noLoop(); });
 }
 
 function draw() {
