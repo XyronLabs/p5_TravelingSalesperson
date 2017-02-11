@@ -28,8 +28,20 @@ function setup() {
 function draw() {
     background(0);
     
+    // Change path
+    var i = floor(random(cities.length));
+    var j = floor(random(cities.length));
+    swap(cities, i, j);
+
+    // Calculate distance and check if is a new record
+    var d = calculateDistance(cities);
+    if (d < recordDistance) {
+        recordDistance = d;
+        bestPath = cities.slice();
+    }
+
     // Draw current path
-    stroke(50);
+    stroke(100);
     strokeWeight(2);
     beginShape();
     for (i = 0; i < cities.length; i++) {
@@ -62,4 +74,10 @@ function calculateDistance(arr) {
         sum += dist(arr[i].x, arr[i].y, arr[i + 1].x, arr[i + 1].y);
     }
     return sum;
+}
+
+function swap(arr, i, j) {
+    var tmp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = tmp;
 }
